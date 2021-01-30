@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main () {
+    unsigned char word[1000000];      //unsigned char 혹은 char 둘다 상관없음, 문자에 해당하는 정숫값을 이용할 것이므로 char형 사용
+    int arr[26] = {0};
+    int max = 0, count = 0, k, num, i=0, len;
+    
+    scanf("%s", word);
+    len = strlen(word);
+ 
+    for (i=0; i<len; i++) {
+        if (word[i] > 90) {     //A~Z 65~90, a~z(97~122) 대문자로 통일
+            k = word[i]-32;
+            word[i] = k;
+        }
+        arr[word[i]-65] ++;      //arr[아스키코드값]++
+    }
+    
+    for (i=0; i<26; i++) {
+        if(max < arr[i]) {
+            max = arr[i];          //max를 구하고 그 때 인덱스 값 저장, 
+        }
+    }
+    
+    for (int i=0; i<26; i++) {
+        if ( max == arr[i]){
+            count++;                    //둘 이상이면 ?를 출력하는 장치 추가
+            num = i;
+        }         
+    }
+    
+    if (count == 1) printf("%c", num+65);     //출력은 아스키코드값을 문자형태로 출력하도록
+    else printf("?");
+    
+}
