@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    int dat_c;
+    int score, point = 0;
+    char arr[dat_c][80];
+    int len;
+    int sum[dat_c];
+    
+    scanf("%d", &dat_c);
+    
+    for (int i=0; i<dat_c; i++) {    //save data case
+        scanf("%s", arr[i]) ; //2차원 배열 
+    }
+
+    for (int i=0; i<dat_c; i++) { //array pointing data case
+        
+        len = strlen(arr[i]);
+        for (int j=0; j<len; j++) {  //score
+            if (arr[i][j] == 79) {       //o 79 / x 88
+                point++;
+                score += point;     //만약 O값이 면 point++를 하고 score에 더한다.
+            }
+            else if (arr[i][j] == 88) point = 0;   // X가 나오면 다시 0으로 초기화 한다.
+        }
+        sum[i] = score;
+        point = 0;
+        score = 0;
+    }
+    for (int i=0; i<dat_c; i++){
+        printf("%d\n", sum[i]);
+    }
+    
+    
+    return 0;
+}
